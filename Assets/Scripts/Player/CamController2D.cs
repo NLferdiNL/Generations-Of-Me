@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CameraController : MonoBehaviour
+public class CamController2D : MonoBehaviour
 {
 
     public float dampTime = 0.15f;
