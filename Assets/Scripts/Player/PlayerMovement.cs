@@ -31,7 +31,7 @@ public class PlayerMovement : MonoBehaviour {
 
 	void Start () {
         tf = transform;
-        rb = GetComponent<Rigidbody2D>();
+        //rb = RequireComponent<Rigidbody2D>();
 	}
 
     void OnTriggerEnter2D(Collider2D other) {
@@ -95,6 +95,5 @@ public class PlayerMovement : MonoBehaviour {
 
     void OnDeath() {
         tf.Rotate(new Vector3(0, 0, 90));
-        Compon
     }
 }
