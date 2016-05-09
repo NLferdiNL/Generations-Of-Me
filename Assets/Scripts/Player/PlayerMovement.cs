@@ -93,5 +93,9 @@ public class PlayerMovement : MonoBehaviour {
 
     void OnDeath() {
         tf.Rotate(new Vector3(0, 0, 90));
+
+        rb.isKinematic = true;
+        Camera.main.GetComponent<Respawner>().Respawn();
+        GetComponent<KeyboardInput>().enabled = this.enabled = false;
     }
 }
