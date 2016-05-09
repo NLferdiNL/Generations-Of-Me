@@ -6,20 +6,23 @@ using UnityEditor;
 #endif
 public class PauseMenu : MonoBehaviour {
 
-    bool Esc;
-    [SerializeField] GameObject CheckCanvas; [SerializeField] GameObject panel;
+    [SerializeField] GameObject panel;
+    bool Panel;
 
-    void Update()
-    {
-        CheckIfPaused();
-    }
-    void CheckIfPaused()
-    {
-        if (Esc = Input.GetKey(KeyCode.Escape))
+    public void PauseGame()
+    {/*
+        if (escape == true)
         {
             panel.SetActive(true);
+            Panel = true;
             Time.timeScale = 0.0f;
         }
+        if (Panel == true || escape == true)
+        {
+            panel.SetActive(false);
+            Panel = false;
+            Time.timeScale = 1.0f;
+        }*/
     }
     public void TogglePause()
     {
