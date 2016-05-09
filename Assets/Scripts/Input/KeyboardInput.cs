@@ -1,12 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
-using KC = KeyboardConfig;
 
 public class KeyboardInput : MonoBehaviour {
 
     PlayerMovement pm;
 
-    bool forward, backward, jump, crouch, use;
+    bool forward, backward, jump, suicide;
 
     void Start() {
         pm = GetComponent<PlayerMovement>();
@@ -18,17 +17,16 @@ public class KeyboardInput : MonoBehaviour {
 	}
 
     void UpdateBools() {
-        forward = backward = jump = crouch = use = false;
+        forward = backward = jump = suicide = false;
 
-        forward = KC.GetKey("Forward");
-        backward = KC.GetKey("Backward");
-        jump = KC.GetKey("Jump");
-        crouch = KC.GetKey("Down");
+        forward = Input.GetKey(KeyCode.D);
+        backward = Input.GetKey(KeyCode.A);
+        jump = Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.W);
 
-        use = KC.GetKeyDown("Use");
+        suicide = Input.GetKeyDown(KeyCode.P);
     }
 
     void ProcessAndSendMovement() {
-        pm.Move(forward, backward, jump, crouch, use);
+        pm.Move(forward, backward, jump, suicide);
     }
 }
