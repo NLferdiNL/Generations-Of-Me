@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class KeyboardInput : MonoBehaviour {
 
@@ -24,7 +23,7 @@ public class KeyboardInput : MonoBehaviour {
         forward = Input.GetKey(KeyCode.D);
         backward = Input.GetKey(KeyCode.A);
         jump = Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.W);
-        escape = Input.GetKeyDown(KeyCode.Escape);
+        escape = Input.GetKeyDown(KeyCode.KeypadEnter);
         suicide = Input.GetKeyDown(KeyCode.P);
     }
 
