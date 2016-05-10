@@ -1,15 +1,15 @@
 ﻿using UnityEngine;
-using System.Collections;
-using KC = KeyboardConfig;
 
 public class KeyboardInput : MonoBehaviour {
 
     PlayerMovement pm;
+    PauseMenu psm;
 
-    bool forward, backward, jump, crouch, use;
+    bool forward, backward, jump, suicide, escape;
 
     void Start() {
         pm = GetComponent<PlayerMovement>();
+        psm = GetComponent<PauseMenu>();
     }
 
 	void FixedUpdate () {
@@ -18,17 +18,17 @@ public class KeyboardInput : MonoBehaviour {
 	}
 
     void UpdateBools() {
-        forward = backward = jump = crouch = use = false;
+        forward = backward = jump = suicide = escape = false;
 
-        forward = KC.GetKey("Forward");
-        backward = KC.GetKey("Backward");
-        jump = KC.GetKey("Jump");
-        crouch = KC.GetKey("Down");
-
-        use = KC.GetKeyDown("Use");
+        forward = Input.GetKey(KeyCode.D);
+        backward = Input.GetKey(KeyCode.A);
+        jump = Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.W);
+        escape = Input.GetKeyDown(KeyCode.Escape);
+        suicide = Input.GetKeyDown(KeyCode.P);
     }
 
     void ProcessAndSendMovement() {
-        pm.Move(forward, backward, jump, crouch, use);
+        pm.Move(forward, backward, jump, suicide);
+        psm.PauseGame(escape);
     }
 }
