@@ -92,10 +92,14 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     void OnDeath() {
-        tf.Rotate(new Vector3(0, 0, 90));
+        Respawner respawner = Camera.main.GetComponent<Respawner>();
 
-        rb.isKinematic = true;
-        Camera.main.GetComponent<Respawner>().Respawn();
-        GetComponent<KeyboardInput>().enabled = this.enabled = false;
+        if (!respawner.TimedOut) {
+            tf.Rotate(new Vector3(0, 0, 90));
+
+            rb.isKinematic = true;
+            respawner.Respawn(this.gameObject);
+            GetComponent<KeyboardInput>().enabled = this.enabled = false;
+        }
     }
 }
