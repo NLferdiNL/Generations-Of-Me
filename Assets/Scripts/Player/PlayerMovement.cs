@@ -4,7 +4,7 @@ using System.Collections;
 public class PlayerMovement : MonoBehaviour {
 
     Transform tf;
-    Rigidbody2D rb = RequireComponent<Rigidbody2D>();
+    //Rigidbody2D rb = RequireComponent<Rigidbody2D>();
 
     bool touchingGround = false;
 
@@ -82,7 +82,7 @@ public class PlayerMovement : MonoBehaviour {
         }
 
         if (jump && touchingGround) {
-            rb.AddForce(tf.up * currentJumpHeight, ForceMode2D.Impulse);
+            //rb.AddForce(tf.up * currentJumpHeight, ForceMode2D.Impulse);
             touchingGround = false;
         }
 
