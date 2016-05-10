@@ -23,7 +23,7 @@ public class KeyboardInput : MonoBehaviour {
         forward = Input.GetKey(KeyCode.D);
         backward = Input.GetKey(KeyCode.A);
         jump = Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.W);
-        escape = Input.GetKeyDown(KeyCode.KeypadEnter);
+        escape = Input.GetKeyDown(KeyCode.Escape);
         suicide = Input.GetKeyDown(KeyCode.P);
     }
 
