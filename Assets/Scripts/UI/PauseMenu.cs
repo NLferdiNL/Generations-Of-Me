@@ -9,8 +9,8 @@ public class PauseMenu : MonoBehaviour {
     [SerializeField] GameObject panel;
     bool Panel;
 
-    public void PauseGame()
-    {/*
+    public void PauseGame(bool escape)
+    {
         if (escape == true)
         {
             panel.SetActive(true);
@@ -22,7 +22,7 @@ public class PauseMenu : MonoBehaviour {
             panel.SetActive(false);
             Panel = false;
             Time.timeScale = 1.0f;
-        }*/
+        }
     }
     public void TogglePause()
     {

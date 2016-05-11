@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(Rigidbody2D))]
+
 public class PlayerMovement : MonoBehaviour {
 
     Transform tf;
-    //Rigidbody2D rb = RequireComponent<Rigidbody2D>();
-
+    Rigidbody2D rb;
     bool touchingGround = false;
 
     [Header("Movement variables")]
@@ -31,7 +32,7 @@ public class PlayerMovement : MonoBehaviour {
 
 	void Start () {
         tf = transform;
-        //rb = RequireComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
 	}
 
     void OnTriggerEnter2D(Collider2D other) {
@@ -60,7 +61,7 @@ public class PlayerMovement : MonoBehaviour {
     }
 
 	// Move is called once per frame
-    public void Move(bool forward, bool backward, bool jump, bool crouch, bool use) {
+    public void Move(bool forward, bool backward, bool jump, bool suicide) {
         Vector3 toMove = new Vector3();
         float currentJumpHeight = jumpHeight / jumpDivider;
         float currentWalkSpeed = touchingGround ? groundSpeed / walkDivider : airSpeed / walkDivider;
@@ -69,10 +70,6 @@ public class PlayerMovement : MonoBehaviour {
         // Just make sure it doesn't do both.
         if (forward && backward) {
             forward = backward = false;
-        }
-
-        if (jump && crouch) {
-            jump = crouch = false;
         }
 
         if (forward) {
@@ -86,7 +83,7 @@ public class PlayerMovement : MonoBehaviour {
             touchingGround = false;
         }
 
-        if (use) {
+        if (suicide) {
             OnDeath();
         }
 
@@ -94,6 +91,14 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     void OnDeath() {
-        tf.Rotate(new Vector3(0, 0, 90));
+        Respawner respawner = Camera.main.GetComponent<Respawner>();
+
+        if (!respawner.TimedOut) {
+            tf.Rotate(new Vector3(0, 0, 90));
+
+            rb.isKinematic = true;
+            respawner.Respawn(this.gameObject);
+            GetComponent<KeyboardInput>().enabled = this.enabled = false;
+        }
     }
 }
