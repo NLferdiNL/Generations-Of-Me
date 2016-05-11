@@ -6,11 +6,7 @@ using System.Collections;
 public class PlayerMovement : MonoBehaviour {
 
     Transform tf;
-<<<<<<< HEAD
-    //Rigidbody2D rb = RequireComponent<Rigidbody2D>();
-=======
     Rigidbody2D rb;
->>>>>>> origin/master
 
     bool touchingGround = false;
 
