@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 [RequireComponent(typeof(Rigidbody2D))]
 
@@ -26,10 +25,13 @@ public class PlayerMovement : MonoBehaviour {
 
     [Header("Misc. variables")]
     [SerializeField, Tooltip("Don't edit this unless you know what you're doing!")]
-    float walkDivider;
-    
+    float maxVelocity = 10;
+
     [SerializeField, Tooltip("Don't edit this unless you know what you're doing!")]
-    float jumpDivider;
+    float walkDivider = 30;
+
+    [SerializeField, Tooltip("Don't edit this unless you know what you're doing!")]
+    float jumpDivider = 1;
 
 	void Start () {
         tf = transform;
@@ -85,21 +87,38 @@ public class PlayerMovement : MonoBehaviour {
         }
 
         if (suicide) {
-            OnDeath();
+            Suicide();
+        }
+
+        if (rb.velocity.y >= maxVelocity) {
+            rb.velocity = new Vector2(rb.velocity.x, maxVelocity);
         }
 
         tf.position += toMove;
     }
 
-    void OnDeath() {
+    public void Suicide(bool outsideDeath = false) {
+        // Maybe add some more stuff later?
+        OnDeath(outsideDeath);
+    }
+
+    void OnDeath(bool outsideDeath = false) {
         Respawner respawner = Camera.main.GetComponent<Respawner>();
 
-        if (!respawner.TimedOut) {
-            tf.Rotate(new Vector3(0, 0, 90));
-
-            rb.isKinematic = true;
-            respawner.Respawn(this.gameObject);
-            GetComponent<KeyboardInput>().enabled = this.enabled = false;
+        if (!outsideDeath) {
+            if (!respawner.TimedOut) {
+                DeathHandling(respawner);
+            }
+        } else {
+            DeathHandling(respawner, true);
         }
+    }
+
+    void DeathHandling(Respawner respawner, bool outsideDeath = false) {
+        tf.Rotate(new Vector3(0, 0, 90));
+
+        rb.isKinematic = true;
+        respawner.Respawn(this.gameObject, outsideDeath);
+        GetComponent<KeyboardInput>().enabled = this.enabled = false;
     }
 }

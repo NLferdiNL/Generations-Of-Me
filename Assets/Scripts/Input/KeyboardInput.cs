@@ -29,6 +29,6 @@ public class KeyboardInput : MonoBehaviour {
 
     void ProcessAndSendMovement() {
         pm.Move(forward, backward, jump, suicide);
-        psm.PauseGame(escape);
+        //psm.PauseGame(escape);
     }
 }

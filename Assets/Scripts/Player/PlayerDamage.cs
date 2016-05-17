@@ -1,15 +1,19 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class PlayerDamage : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+    [SerializeField]
+    string damageTag = "Danger";
+
+    PlayerMovement pm;
+
+    void Start() {
+        pm = GetComponent<PlayerMovement>();
+    }
+
+	void OnCollisionEnter2D (Collision2D other) {
+	    if(other.gameObject.tag == damageTag) {
+            pm.Suicide(true);
+        }
 	}
 }
