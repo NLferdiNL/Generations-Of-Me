@@ -52,6 +52,8 @@ public class Respawner : MonoBehaviour {
                 Destroy(lastBody);
             lastBody = bodyToDiscard;
 
+            lastBody.layer = LayerMask.NameToLayer("Ground");
+
             GameObject currentBody = Instantiate(cloneBody);
             currentBody.transform.position = respawn.position;
 
