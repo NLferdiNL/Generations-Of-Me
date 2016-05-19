@@ -82,7 +82,7 @@ public class PlayerMovement : MonoBehaviour {
         }
 
         if (jump && touchingGround) {
-            //rb.AddForce(tf.up * currentJumpHeight, ForceMode2D.Impulse);
+            rb.AddForce(tf.up * currentJumpHeight, ForceMode2D.Impulse);
             touchingGround = false;
         }
 
