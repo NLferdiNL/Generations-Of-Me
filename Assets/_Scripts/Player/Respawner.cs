@@ -66,6 +66,7 @@ public class Respawner : MonoBehaviour {
 
             if(!infiniteBodies)
                 Destroy(lastBody);
+
             lastBody = bodyToDiscard;
 
             if (lives >= 0) {
@@ -74,6 +75,11 @@ public class Respawner : MonoBehaviour {
 
                 camCon2D.Target = currentBody.transform;
             }
+
+            lastBody.layer = LayerMask.NameToLayer("Ground");
+
+            GameObject currentBody = Instantiate(cloneBody);
+            currentBody.transform.position = respawn.position;
 
             StartCoroutine(TimeOut());
         }
