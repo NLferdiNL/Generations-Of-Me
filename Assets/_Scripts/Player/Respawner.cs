@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class Respawner : MonoBehaviour {
+public class Respawner : MonoBehaviour
+{
 
     [SerializeField]
     GameObject cloneBody;
@@ -14,8 +15,10 @@ public class Respawner : MonoBehaviour {
 
     bool timedOut = false;
 
-    public bool TimedOut {
-        get {
+    public bool TimedOut
+    {
+        get
+        {
             return timedOut;
         }
     }
@@ -34,46 +37,56 @@ public class Respawner : MonoBehaviour {
 
     int maxLives;
 
-    public int Lives {
+    public int Lives
+    {
         get { return lives; }
     }
 
-    public int MaxLives {
+    public int MaxLives
+    {
         get { return maxLives; }
     }
 
-    void Start() {
+    void Start()
+    {
         respawn = GameObject.FindWithTag("Respawn").GetComponent<Transform>();
         camCon2D = Camera.main.GetComponent<CamController2D>();
-        if (lives > 0) {
+        if (lives > 0)
+        {
             infiniteBodies = true;
             workingWithLives = true;
             maxLives = lives;
         }
     }
 
-    public void Respawn(GameObject bodyToDiscard, bool outsideDeath = false) {
-        if (!timedOut || outsideDeath) {
-            if (workingWithLives) {
-                if (lives > 0 || outsideDeath) {
+    public void Respawn(GameObject bodyToDiscard, bool outsideDeath = false)
+    {
+        if (!timedOut || outsideDeath)
+        {
+            if (workingWithLives)
+            {
+                if (lives > 0 || outsideDeath)
+                {
                     lives--;
                     if (lives < 0)
                         lives = 0;
-                } else {
+                }
+                else {
                     return;
                 }
             }
 
-            if(!infiniteBodies)
+            if (!infiniteBodies)
                 Destroy(lastBody);
 
             lastBody = bodyToDiscard;
 
-            if (lives >= 0) {
-                GameObject currentBody = Instantiate(cloneBody);
-                currentBody.transform.position = respawn.position;
+            if (lives >= 0)
+            {
+                //GameObject currentBody = Instantiate(cloneBody);
+                //currentBody.transform.position = respawn.position;
 
-                camCon2D.Target = currentBody.transform;
+                //camCon2D.Target = currentBody.transform;
             }
 
             lastBody.layer = LayerMask.NameToLayer("Ground");
@@ -85,17 +98,22 @@ public class Respawner : MonoBehaviour {
         }
     }
 
-    IEnumerator TimeOut() {
+    IEnumerator TimeOut()
+    {
         timedOut = true;
         yield return new WaitForSeconds(timeOutDelay);
-        if (workingWithLives) {
-            if (lives <= 0) {
+        if (workingWithLives)
+        {
+            if (lives <= 0)
+            {
                 // This prevents the player from commiting suicide next time.
                 timedOut = true;
-            } else {
+            }
+            else {
                 timedOut = false;
             }
-        } else {
+        }
+        else {
             timedOut = false;
         }
     }
