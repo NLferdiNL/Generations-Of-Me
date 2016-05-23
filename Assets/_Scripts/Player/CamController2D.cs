@@ -9,11 +9,6 @@ public class CamController2D : MonoBehaviour
     Transform target;
     Camera cam;
 
-<<<<<<< HEAD
-    [SerializeField] float dampTime = 0.15f; Transform target;
-    Vector3 velocity = Vector3.zero;
-    Camera cam;
-=======
     public Transform Target {
         get {
             return target;
@@ -22,7 +17,6 @@ public class CamController2D : MonoBehaviour
             target = value;
         }
     }
->>>>>>> 6fe5030fa86b1d560c2dddf5ed476d7c2b7e7734
 
     void Start()
     {
