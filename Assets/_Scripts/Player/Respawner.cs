@@ -64,17 +64,14 @@ public class Respawner : MonoBehaviour {
                 }
             }
 
+            if (outsideDeath)
+                bodyToDiscard.GetComponent<PlayerMovement>().Suicide(true, true);
+
             if(!infiniteBodies)
                 Destroy(lastBody);
 
+
             lastBody = bodyToDiscard;
-
-            if (lives >= 0) {
-                GameObject currentBody = Instantiate(cloneBody);
-                currentBody.transform.position = respawn.position;
-
-                camCon2D.Target = currentBody.transform;
-            }
 
             lastBody.layer = LayerMask.NameToLayer("Ground");
 
