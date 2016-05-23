@@ -3,18 +3,15 @@ using System.Collections;
 
 public class BeamCannon : MonoBehaviour
 {
-<<<<<<< HEAD
     // make timer for bool on/off
     bool isShooting = false;
 
     Respawner resp;
 
-    void Start()
-    {
-        resp = Camera.main.GetComponent<Respawner>();
-=======
     [SerializeField]
     private float beamInterval;
+
+    ParticleSystem pars;
 
     private bool firing = false;
 
@@ -23,19 +20,26 @@ public class BeamCannon : MonoBehaviour
     void Start()
     {
         reps = Camera.main.GetComponent<Respawner>();
+        pars = GetComponent<ParticleSystem>();
         StartCoroutine(BeamSwitch(0));
     }
     IEnumerator BeamSwitch(float switchtime)
     {
         yield return new WaitForSeconds(beamInterval);
         firing = !firing;
+
+
+
+        if(firing)
+        {
+
+        }
         StartCoroutine(BeamSwitch(beamInterval));
->>>>>>> origin/master
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (firing && other.tag == Tags.Player)
+        if (firing && other.tag == Tags.PLAYER)
         {
             resp.Respawn(other.gameObject);
         }

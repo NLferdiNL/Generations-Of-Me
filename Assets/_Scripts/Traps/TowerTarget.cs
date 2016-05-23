@@ -22,7 +22,9 @@ public class TowerTarget : MonoBehaviour
         //_target = col;
         if (col)
         {
-            _target = col.gameObject.transform;
+            if (col.gameObject.layer == LayerMask.NameToLayer("Player")) {
+                _target = col.gameObject.transform;
+            }
         }
         else
             _target = null;

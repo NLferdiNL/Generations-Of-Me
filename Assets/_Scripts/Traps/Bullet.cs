@@ -25,10 +25,15 @@ public class Bullet : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == Tags.Player)
+        print(other.tag == Tags.PLAYER);
+        if (other.tag == Tags.PLAYER)
         {
-            resp.Respawn(other.gameObject);
-            Destroy(gameObject);
+            if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
+            {
+                resp.Respawn(other.gameObject, true);
+            }
         }
+        if(other.tag != Tags.PROJECTILE)
+            Destroy(gameObject);
     }
 }

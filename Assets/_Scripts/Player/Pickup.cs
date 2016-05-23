@@ -24,7 +24,7 @@ public class Pickup : MonoBehaviour
 
     void OnTriggerEnter2d(Collider2D other)
     {
-        if (other.tag == Tags.Player)
+        if (other.tag == Tags.PLAYER)
         {
             coinCount++;
             Destroy(gameObject);

@@ -12,7 +12,7 @@ public class MovingPlatform : MonoBehaviour
 
     void Awake()
     {
-        doorTarget = GameObject.FindGameObjectWithTag(Tags.PlatformTarget).transform;
+        doorTarget = GameObject.FindGameObjectWithTag(Tags.PLATFORMTARGET).transform;
     }
 
     //The update checks if the doorUp is true. And if it is it, moves the door
