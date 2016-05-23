@@ -38,7 +38,7 @@ public class TowerShoot : MonoBehaviour {
 	void RotateTurret(){
 		Vector3 direction = this.transform.position - target.position;
 		float angle = Mathf.Atan2 (direction.y, direction.x) * Mathf.Rad2Deg;
-		rotation = Quaternion.Lerp (this.transform.rotation, Quaternion.Euler(0, 0, angle + 90), Time.time * turnSpeed);
+		rotation = Quaternion.Lerp (this.transform.rotation, Quaternion.Euler(0, 0, angle - 90), Time.time * turnSpeed);
 	}
 
 	void Shoot(){

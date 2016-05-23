@@ -1,12 +1,28 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class CamController2D : MonoBehaviour
 {
+    [SerializeField]
+    float dampTime = 0.15f;
+    Vector3 velocity = Vector3.zero;
+    [SerializeField]
+    Transform target;
+    Camera cam;
 
+<<<<<<< HEAD
     [SerializeField] float dampTime = 0.15f; Transform target;
     Vector3 velocity = Vector3.zero;
     Camera cam;
+=======
+    public Transform Target {
+        get {
+            return target;
+        }
+        set {
+            target = value;
+        }
+    }
+>>>>>>> 6fe5030fa86b1d560c2dddf5ed476d7c2b7e7734
 
     void Start()
     {
