@@ -4,10 +4,9 @@ using System.Collections;
 public class CamController2D : MonoBehaviour
 {
 
-    public float dampTime = 0.15f;
-    private Vector3 velocity = Vector3.zero;
-    public Transform target;
-    private Camera cam;
+    [SerializeField] float dampTime = 0.15f; Transform target;
+    Vector3 velocity = Vector3.zero;
+    Camera cam;
 
     void Start()
     {
