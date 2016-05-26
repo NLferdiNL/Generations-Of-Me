@@ -96,34 +96,4 @@ public class PlayerMovement : MonoBehaviour {
 
         tf.position += toMove;
     }
-
-    public void Suicide(bool outsideDeath = false, bool fromRespawner = false) {
-        Respawner respawner = Camera.main.GetComponent<Respawner>();
-
-        // Maybe add some more stuff later?
-        if (!fromRespawner)
-            OnDeath(respawner, outsideDeath);
-        else
-            DeathHandling(respawner, false, fromRespawner);
-    }
-
-    void OnDeath(Respawner respawner, bool outsideDeath = false) {
-
-        if (!outsideDeath) {
-            if (!respawner.TimedOut) {
-                DeathHandling(respawner);
-            }
-        } else {
-            DeathHandling(respawner, true);
-        }
-    }
-
-    void DeathHandling(Respawner respawner, bool outsideDeath = false, bool fromRespawner = false) {
-        tf.Rotate(new Vector3(0, 0, 90));
-
-        rb.isKinematic = true;
-        if(!fromRespawner)
-            respawner.Respawn(this.gameObject, outsideDeath);
-        GetComponent<KeyboardInput>().enabled = this.enabled = false;
-    }
 }

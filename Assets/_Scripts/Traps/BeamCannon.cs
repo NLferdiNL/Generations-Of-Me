@@ -41,7 +41,7 @@ public class BeamCannon : MonoBehaviour
     {
         if (firing && other.tag == Tags.PLAYER)
         {
-            resp.Respawn(other.gameObject);
+            reps.Respawn(other.gameObject);
         }
     }
 }
