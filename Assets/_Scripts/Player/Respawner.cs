@@ -52,10 +52,11 @@ public class Respawner : MonoBehaviour {
         }
     }
 
-    public void Respawn(GameObject bodyToDiscard, bool outsideDeath = false) {
-        if (!timedOut || outsideDeath) {
-            if (workingWithLives) {
-                if (lives > 0 || outsideDeath) {
+    public void Respawn(GameObject bodyToDiscard, bool forcedDeath) {
+        if (!timedOut || forcedDeath) {
+
+            if (workingWithLives && !forcedDeath) {
+                if (lives > 0) {
                     lives--;
                     if (lives < 0)
                         lives = 0;
@@ -64,8 +65,7 @@ public class Respawner : MonoBehaviour {
                 }
             }
 
-            if (outsideDeath)
-                bodyToDiscard.GetComponent<PlayerMovement>().Suicide(true, true);
+            bodyToDiscard.GetComponent<PlayerDamage>().Suicide(true);
 
             if(!infiniteBodies)
                 Destroy(lastBody);

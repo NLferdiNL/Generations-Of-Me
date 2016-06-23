@@ -25,7 +25,7 @@ public class Bullet : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        print(other.tag == Tags.PLAYER);
+        //print(other.tag == Tags.PLAYER);
         if (other.tag == Tags.PLAYER)
         {
             if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
